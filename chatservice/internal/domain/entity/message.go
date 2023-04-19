@@ -19,7 +19,6 @@ type Message struct {
 
 func NewMessage(role, content string, model *Model) (*Message, error) {
 	totalTokens := tiktoken_go.CountTokens(model.GetModelName(), content)
-
 	msg := &Message{
 		ID:        uuid.New().String(),
 		Role:      role,
@@ -38,7 +37,7 @@ func (m *Message) Validate() error {
 	if m.Role != "user" && m.Role != "system" && m.Role != "assistant" {
 		return errors.New("invalid role")
 	}
-	if m.Content != "" {
+	if m.Content == "" {
 		return errors.New("content is empty")
 	}
 	if m.CreatedAt.IsZero() {
