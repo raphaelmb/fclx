@@ -2,22 +2,22 @@ import { prisma } from "@/prisma/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json()
+  const body = await request.json();
   const chatCreated = await prisma.chat.create({
     data: {
       messages: {
         create: {
-          content: body.message
-        }
-      }
+          content: body.message,
+        },
+      },
     },
     select: {
       id: true,
-      messages: true
-    }
-  })
+      messages: true,
+    },
+  });
 
-  return NextResponse.json(chatCreated)
+  return NextResponse.json(chatCreated);
 }
 
 export async function GET(request: NextRequest) {
@@ -25,14 +25,14 @@ export async function GET(request: NextRequest) {
     select: {
       id: true,
       messages: {
-        orderBy: {created_at: "asc"},
-        take: 1
-      }
+        orderBy: { created_at: "asc" },
+        take: 1,
+      },
     },
     orderBy: {
-      created_at: "desc"
-    }
-  })
+      created_at: "desc",
+    },
+  });
 
-  return NextResponse.json(chats)
+  return NextResponse.json(chats);
 }
