@@ -1,5 +1,5 @@
 import { ChatServiceClientFactory } from "@/grpc/chat-service-client";
-import { prisma } from "@/prisma/prisma";
+import { prisma } from "@/app/prisma/prisma";
 import { NextRequest } from "next/server";
 
 type Params = {

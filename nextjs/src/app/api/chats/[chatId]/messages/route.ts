@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma/prisma";
+import { prisma } from "@/app/prisma/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 type Params = {
