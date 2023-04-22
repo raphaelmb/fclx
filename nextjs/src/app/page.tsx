@@ -14,6 +14,7 @@ import { UserIcon } from "./components/UserIcon";
 import { marked } from "marked";
 import hljs from "highlight.js";
 import { LogoutIcon } from "./components/LogoutIcon";
+import { signOut } from "next-auth/react";
 // import { signOut } from "next-auth/react";
 
 marked.setOptions({
@@ -200,7 +201,7 @@ export default function Home() {
   }
 
   async function logout() {
-    // await signOut({ redirect: false });
+    await signOut({ redirect: false });
     const { url: logoutUrl } = await ClientHttp.get(
       `logout-url?${new URLSearchParams({ redirect: window.location.origin })}`
     );
